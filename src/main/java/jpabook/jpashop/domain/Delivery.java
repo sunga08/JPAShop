@@ -21,5 +21,5 @@ public class Delivery {
     private Address address;
 
     @Enumerated(EnumType.STRING) //ORDINAL: 컬럼이 숫자로 들어감(중간에 다른 상태가 생기면 망함)
-    private DeliverStatus status; //READY, COMP
+    private DeliveryStatus status; //READY, COMP
 }
