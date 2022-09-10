@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -38,5 +39,12 @@ public class MemberController {
 
         memberService.join(member);
         return "redirect:/"; //첫번째 페이지로 넘어감
+    }
+
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers(); //실무에서는 엔티티를 그대로 사용하기보다 dto로 변환해서 화면에 필요한 것만 출력하는 것을 권장
+        model.addAttribute("members", members);
+        return "members/memberList";
     }
 }
