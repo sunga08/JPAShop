@@ -26,10 +26,10 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member; //여기에 값을 셋팅하면 member_id fk가 변경됨
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne(fetch = LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = LAZY)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
