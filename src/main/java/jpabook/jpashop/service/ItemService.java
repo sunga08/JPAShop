@@ -20,6 +20,16 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity){
+        Item findItem = itemRepository.findOne(itemId); //db에 있는 영속상태 아이템을 찾아옴
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+
+        //transactional에 의해 커밋 -> flush(영속성 컨텍스트의 엔티티 중 변경된 것을 찾음) -> 바뀐 값으로 db에 update침
+    }
+
     public List<Item> findItems(){
         return itemRepository.findAll();
     }
